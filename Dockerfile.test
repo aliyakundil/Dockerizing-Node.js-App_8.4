@@ -1,0 +1,12 @@
+# Dockerfile.test
+FROM todo-api:production
+
+# Switch back to root to install test dependencies
+USER root
+RUN npm install --only=dev
+
+# Switch back to nodejs user
+USER nodejs
+
+# Run tests
+CMD ["npm", "test"]

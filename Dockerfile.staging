@@ -1,0 +1,13 @@
+# Dockerfile.staging
+FROM todo-api:production AS staging
+
+# Staging-specific configurations
+ENV NODE_ENV=staging
+ENV LOG_LEVEL=debug
+
+# Additional staging tools
+USER root
+RUN apk add --no-cache curl
+USER nodejs
+
+CMD ["node", "src/app.js"]

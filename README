@@ -1,0 +1,14 @@
+# Todo API (Docker + Node.js)
+
+## Run locally
+
+docker build -t todo-api .
+docker run -p 3000:3000 --env-file .env.production todo-api
+
+## API
+
+GET /health  
+GET /api/todos  
+POST /api/todos  
+PUT /api/todos/:id  
+DELETE /api/todos/:id
