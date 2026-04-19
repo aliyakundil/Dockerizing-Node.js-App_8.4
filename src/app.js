@@ -43,8 +43,12 @@ const Todo = mongoose.model('Todo', todoSchema)
 
 // Routes
 app.get('/health', (req, res) => {
-  res.json({
-    status: 'healthy',
+  const isDbConnected = mongoose.connection.readyState !== 1;
+
+  const status = isDbConnected ? 'healthy' : 'unhealthy';
+
+  res.status(isDbConnected ? 200 : 500).json({
+    status,
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || 'development'
   })
